@@ -1,4 +1,4 @@
-FROM tomcat:latest
+FROM tomcat:9.0.67-jdk17-temurin-jammy
 
 RUN mkdir -p /usr/local/tomcat/webapps/myapp
 
