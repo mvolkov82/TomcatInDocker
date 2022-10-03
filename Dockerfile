@@ -22,7 +22,7 @@ RUN apt install maven -y
 
 RUN apt-get -y install curl
 RUN mkdir /usr/local/tomcat
-RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz -O /tmp/tomcat.tar.gz
+#RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz -O /tmp/tomcat.tar.gz
 RUN wget     https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.0/bin/apache-tomcat-10.1.0.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /tmp
 RUN tar xvfz tomcat.tar.gz
