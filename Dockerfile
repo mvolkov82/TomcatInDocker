@@ -16,9 +16,18 @@ RUN apt install maven -y
 #RUN export PATH=${M2_HOME}/bin:${PATH}
 
 
-RUN apt-get install tomcat
+#RUN apt-get install tomcat -y
+#RUN sudo apt-get install tomcat9 -y
 
+
+RUN apt-get -y install curl
+RUN mkdir /usr/local/tomcat
+RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz -O /tmp/tomcat.tar.gz
+RUN cd /tmp &amp;&amp; tar xvfz tomcat.tar.gz
+RUN cp -Rv /tmp/apache-tomcat-10.0.20/* /usr/local/tomcat/
 EXPOSE 8080
+
+
 
 RUN mkdir -p /usr/local/tomcat/webapps
 
