@@ -33,4 +33,15 @@ RUN mkdir -p /usr/local/tomcat/webapps
 
 ADD hello-1.0.war /usr/local/tomcat/webapps
 
+#CMD ["catalina.sh", "run"]
+# Define default command.
+CMD ["bash"]
+
+MAINTAINER bhaskarndas@gmail.com
+
+
+WORKDIR /usr/local/tomcat/webapps
+RUN curl -O -L https://github.com/bhaskarndas/sample-war/raw/main/sampletest.war
+
+
 CMD ["catalina.sh", "run"]
