@@ -18,6 +18,7 @@ RUN apt install maven -y
 
 RUN apt-get install tomcat
 
+EXPOSE 8080
 
 RUN mkdir -p /usr/local/tomcat/webapps
 
