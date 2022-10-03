@@ -1,4 +1,13 @@
-FROM tomcat:latest
+FROM ubuntu:16.04
+
+RUN apt-get update
+
+RUN apt install maven -y
+
+
+
+
+
 
 RUN mkdir -p /usr/local/tomcat/webapps
 
