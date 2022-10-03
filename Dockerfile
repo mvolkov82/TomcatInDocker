@@ -27,7 +27,7 @@ RUN mkdir /usr/local/tomcat
 RUN wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.0/bin/apache-tomcat-10.1.0.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /
 RUN cd tmp
-RUN ll
+RUN ls -lru
 RUN tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-10.1.0/* /usr/local/tomcat/
 EXPOSE 8080
