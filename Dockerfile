@@ -2,9 +2,9 @@ FROM ubuntu:16.04
 
 RUN apt-get update
 
-RUN apt install default-jdk -y
+RUN apt-get -y install openjdk-8-jdk wget
 
-ENV JAVA_HOME /usr/lib/jvm/default-java/
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 RUN export JAVA_HOME
 
 RUN apt-get install git-all -y
