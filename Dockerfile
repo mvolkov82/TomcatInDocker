@@ -1,53 +1,22 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
-RUN apt-get -y update
-RUN apt-get -y upgrade
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get -y update && \
+    apt-get -y install tomcat9 default-jdk maven git
 
-RUN apt-get -y install openjdk-8-jdk wget
+RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git && \
+    cd boxfuse-sample-java-war-hello && \
+    mvn package \
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-RUN export JAVA_HOME
-
-RUN apt-get install git-all -y
-
-RUN apt install maven -y
-
-#RUN export M2_HOME=/opt/maven
-#RUN export MAVEN_HOME=/opt/maven
-#RUN export PATH=${M2_HOME}/bin:${PATH}
+RUN cp boxfuse-sample-java-war-hello/target/hello-*.war /var/lib/tomcat9/webaps/
 
 
-#RUN apt-get install tomcat -y
-#RUN sudo apt-get install tomcat9 -y
+ENV CATALINA_HOME=/usr/share/tomcat9 \
+    CATALINA_BASE=/var/lib/tomcat9 \
+    CATALINA_TMPDIR=/tmp \
+    JAVA_OPTS=-Djava.awt.headless=true
 
-
-RUN apt-get -y install curl
-RUN mkdir /usr/local/tomcat
-#RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz -O /tmp/tomcat.tar.gz
-#RUN wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.0/bin/apache-tomcat-10.1.0.tar.gz -O /tmp/tomcat.tar.gz
-RUN wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.0/bin/apache-tomcat-10.1.0.tar.gz -O tomcat.tar.gz
-#RUN cd /
-#RUN cd tmp
-RUN ls -lru
-RUN tar xvfz tomcat.tar.gz
-RUN cp -Rv /apache-tomcat-10.1.0/* /usr/local/tomcat/
 EXPOSE 8080
 
-
-
-RUN mkdir -p /usr/local/tomcat/webapps
-
-ADD hello-1.0.war /usr/local/tomcat/webapps
-
-#CMD ["catalina.sh", "run"]
-# Define default command.
-CMD ["bash"]
-
-MAINTAINER bhaskarndas@gmail.com
-
-
-WORKDIR /usr/local/tomcat/webapps
-RUN curl -O -L https://github.com/bhaskarndas/sample-war/raw/main/sampletest.war
-
-
-CMD ["catalina.sh", "run"]
+CMD ["/bin/bash:", "-c", "usr/root/tomcat9/tomcat-update-policy.sh; /usr/root/tomcat9/tomcat-start.sh"]
