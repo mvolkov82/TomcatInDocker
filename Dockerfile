@@ -21,6 +21,6 @@ ENV CATALINA_HOME=/usr/share/tomcat9 \
 EXPOSE 8080
 
 #COPY start.sh /start.sh
-CMD ["bash"]
+#CMD ["bash"]
 
-#CMD ["/usr/root/tomcat9/tomcat-start.sh", "run"]
+CMD ["/bin/bash", "-c", "/usr/libexec/tomcat9/tomcat-update-policy.sh; /usr/libexec/tomcat9/tomcat-start.sh", "run"]
