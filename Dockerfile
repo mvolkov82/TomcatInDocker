@@ -7,7 +7,7 @@ RUN apt-get -y update && \
 
 RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git && \
     cd boxfuse-sample-java-war-hello && \
-    mvn package \
+    mvn package
 
 RUN cp boxfuse-sample-java-war-hello/target/hello-*.war /var/lib/tomcat9/webaps/
 
