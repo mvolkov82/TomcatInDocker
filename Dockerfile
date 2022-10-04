@@ -20,4 +20,7 @@ ENV CATALINA_HOME=/usr/share/tomcat9 \
 
 EXPOSE 8080
 
-CMD ["/usr/root/tomcat9/tomcat-start.sh", "run"]
+COPY start.sh /start.sh
+CMD ["./start.sh"]
+
+#CMD ["/usr/root/tomcat9/tomcat-start.sh", "run"]
