@@ -1,0 +1,5 @@
+---
+version: '3'
+services:
+  mvn:
+    image:maven:3.8.6-openjdk-18
