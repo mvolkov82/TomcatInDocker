@@ -12,5 +12,3 @@ services:
       - "8080:8080"
     volumes:
       - mvndata:/usr/local/tomcat/webapps/
-  volumes:
-    mavendata:
